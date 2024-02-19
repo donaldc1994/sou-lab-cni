@@ -1,0 +1,15 @@
+---
+# Questo playbook Ansible configura due server, uno per il frontend e uno per il backend, 
+# usando il ruolo sou_podman in contesti diversi, che ha come target host specifici (soufe1 e soube2).
+
+- name: Configuring Server Frontend
+  hosts: soufe1
+  roles:
+  - role: sou_podman
+    context: frontend
+
+- name: Configuring Server Backend
+  hosts: soube2
+  roles:
+  - role: sou_podman
+    context: backend

@@ -35,7 +35,14 @@ Vagrant.configure("2") do |config|
           vb.name = name
           vb.customize ["modifyvm", :id, "--memory", node[:ram]]
           vb.cpus = node[:cpu]
-        end 
+        end
+        
+        # Configuro la VM di cui effettuare il provisioning utilizzando Ansible, uno strumento di gestione della configurazione.
+        servers.vm.provision "ansible" do |ansible|
+            ansible.playbook = "playbook.yml"
+            ansible.become = true
+            ansible.verbose = "v"
+        end
       end
     end
   end
