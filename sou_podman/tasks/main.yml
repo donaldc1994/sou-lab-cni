@@ -1,2 +1,8 @@
 ---
 # tasks file for sou_podman
+
+#Install podman
+- name: installing podman
+  package:
+    name: podman
+    state: present

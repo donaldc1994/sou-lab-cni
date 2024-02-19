@@ -16,10 +16,17 @@ DevOps – Vagrant, Ansible, Prometheus, Grafana e HaProxy
 # Version v1.1 
  - Creazione di un ruolo Ansible denominato sou_podman. Nei punti successivi sono espresse le azione che deve compiere l'automatismo.
 
-# Notes  per version v1.1
+# Notes per version v1.1
  - Creo il ruolo: 
     - ansible-galaxy init sou_podman
  - Reference links : 
-    - https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html 
+    - https://docs.ansible.c2om/ansible/latest/playbook_guide/playbooks_reuse_roles.html 
     - https://spacelift.io/blog/ansible-roles 
-    - https://www.devopsschool.com/tutorial/ansible/ansible-roles-explained-with-examples.html 
+    - https://www.devopsschool.com/tutorial/ansible/ansible-roles-explained-with-examples.html
+
+# Version v1.2
+ - Installare podman su soufe1 e soube2. 
+
+# Notes per version v1.2
+ - Reference links: 
+   - https://docs.ansible.com/ansible/latest/collections/containers/podman/podman_container_module.html#examples 
