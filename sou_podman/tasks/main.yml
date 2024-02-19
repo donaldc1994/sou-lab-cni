@@ -6,3 +6,9 @@
   package:
     name: podman
     state: present
+
+- include_tasks: soufe1.yml
+  when: context == 'frontend'
+
+- include_tasks: soube2.yml
+  when: context == 'backend'

@@ -1,0 +1,49 @@
+# PROMETHEUS
+
+- name: Create Prometheus dirs
+  ansible.builtin.file:
+    path: "{{ prometheus_path }}/{{ item }}"
+    state: directory
+    mode: '0755'
+  with_items: ['data', 'conf']
+  
+- name: Configure Prometheus
+  template: src=prometheus.yml.j2 dest=/containers_vols/prometheus/conf/prometheus.yml
+  
+- name: Create the Prometheus container
+  containers.podman.podman_container:
+    name: prometheus
+    image: prom/prometheus
+    command:
+      - '--web.external-url=/prometheus/'
+      - '--web.route-prefix=/prometheus/'
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    volume:
+      - /containers_vols/prometheus/conf/prometheus.yml:/etc/prometheus/prometheus.yml:z
+      - /containers_vols/prometheus/data:/prometheus/data:z,U
+    publish: "{{ prometheus_port_bind }}" 
+    state: started
+    
+
+
+# GRAFANA
+
+- name: Create grafana dirs
+  ansible.builtin.file:
+    path: "{{ grafana_path }}/{{ item }}"
+    state: directory
+    mode: '0755'
+  with_items: ['data', 'conf']
+  
+- name: Configure grafana
+  template: src=grafana.ini.j2 dest=/containers_vols/grafana/conf/grafana.ini
+  
+- name: Create the grafana container
+  containers.podman.podman_container:
+    name: grafana
+    image: grafana/grafana-oss
+    publish: "{{ grafana_port_bind }}"
+    volume:
+      - /containers_vols/grafana/conf/grafana.ini:/etc/grafana/grafana.ini:z
+      - /containers_vols/grafana/data:/var/lib/grafana:z,U
+    state: started   
