@@ -50,4 +50,23 @@ DevOps – Vagrant, Ansible, Prometheus, Grafana e HaProxy
    - https://docs.podman.io/en/latest/markdown/podman-volume-mount.1.html 
    - https://docs.podman.io/en/v4.4/markdown/options/volumes-from.html
    - https://www.haproxy.com/documentation/haproxy-configuration-tutorials/dns-resolution/
-   - https://github.com/openfaas/faasd/blob/master/prometheus.yml  
+   - https://github.com/openfaas/faasd/blob/master/prometheus.yml
+
+# Notes Generali
+ - vagrant --version >> Vagrant 2.2.19
+ - ansible --version >> ansible 2.10.8
+ - vagrant up
+ - vagrant provision
+ - vagrant destroy
+ - vagrant ssh <nomevm>
+ - podman ps --all
+ - podman exec -it <container-name>  /bin/sh 
+ - podman logs -f <container-name>
+
+#  Accedi ai servizi 
+ - http://192.168.56.11:3000/grafana/ (default credenziali: admin/admin)
+ - http://192.168.56.11:9090/prometheus/
+
+# Accedi ai servizi con HaProxy
+ - https://192.168.56.10:8443/grafana/ (default credenziali: admin/admin) 
+ - https://192.168.56.10:8443/prometheus/
